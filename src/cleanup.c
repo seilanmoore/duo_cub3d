@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   cleanup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smoore-a <smoore-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/10 16:37:46 by smoore-a          #+#    #+#             */
-/*   Updated: 2025/01/12 18:22:25 by smoore-a         ###   ########.fr       */
+/*   Created: 2025/01/12 18:16:11 by smoore-a          #+#    #+#             */
+/*   Updated: 2025/01/12 18:23:00 by smoore-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-int	main(int argc, char **argv)
+void	cleanup(t_data *data)
 {
-	t_data	data;
-
-	check_args(argc, argv);
-	data = (t_data){0};
-	parse_file(&data, argv[1]);
-	cleanup(&data);
-	return (EXIT_SUCCESS);
+	mlx_delete_texture(data->no_tex);
+	mlx_delete_texture(data->so_tex);
+	mlx_delete_texture(data->we_tex);
+	mlx_delete_texture(data->ea_tex);
+	free_array(&(data->map));
 }

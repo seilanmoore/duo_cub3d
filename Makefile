@@ -6,7 +6,7 @@
 #    By: smoore-a <smoore-a@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/10 16:39:43 by smoore-a          #+#    #+#              #
-#    Updated: 2025/01/10 17:23:02 by smoore-a         ###   ########.fr        #
+#    Updated: 2025/01/13 16:22:57 by smoore-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,9 +18,9 @@ HEADER = cub3d.h
 
 CC = clang
 
-CFLAGS = -g -Wall -Werror -Wextra -O0 # -O0 -fsanitize=address
+CFLAGS = -Wall -Werror -Wextra -g -O0 # -O3 -fsanitize=address -Ofast
 
-L_FLAGS = -Llibft -lft -LMLX42/build -lmlx42
+L_FLAGS = -Llibft -lft -LMLX42/build -lmlx42 -ldl -lglfw -pthread -lm
 
 LIBFT = libft/libft.a
 
@@ -30,7 +30,9 @@ SRC_DIR = src/
 
 OBJ_DIR = obj/
 
-SRC = main 
+SRC = main check_args check_map error \
+	parse_file parse_lines parse_textures parse_colors \
+	parse_map parse_utils ft_free cleanup
 
 OBJ_FILES = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC)))
 

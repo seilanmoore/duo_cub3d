@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smoore-a <smoore-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/10 16:37:46 by smoore-a          #+#    #+#             */
-/*   Updated: 2025/01/12 18:22:25 by smoore-a         ###   ########.fr       */
+/*   Created: 2025/01/11 20:12:51 by smoore-a          #+#    #+#             */
+/*   Updated: 2025/01/11 21:40:25 by smoore-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-int	main(int argc, char **argv)
+int	print_msg(const char *msg, int code)
 {
-	t_data	data;
+	size_t	len;
 
-	check_args(argc, argv);
-	data = (t_data){0};
-	parse_file(&data, argv[1]);
-	cleanup(&data);
-	return (EXIT_SUCCESS);
+	len = ft_strlen(msg);
+	write(2, "Error: ", 7);
+	if (!ft_strncmp(strerror(errno), "Success", 7))
+	{
+		write(2, msg, len);
+		write(2, "\n", 1);
+	}
+	else
+		perror(msg);
+	return (code);
 }
