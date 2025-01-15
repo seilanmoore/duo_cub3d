@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smoore-a <smoore-a@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jjezzard <jjezzard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 16:52:47 by smoore-a          #+#    #+#             */
-/*   Updated: 2025/01/13 18:35:23 by smoore-a         ###   ########.fr       */
+/*   Updated: 2025/01/15 16:44:45 by jjezzard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,11 @@ typedef struct s_parse
 
 typedef struct s_data
 {
+	mlx_t			*mlx;
+	mlx_image_t		*no_img;
+	mlx_image_t		*so_img;
+	mlx_image_t		*we_img;
+	mlx_image_t		*ea_img;
 	mlx_texture_t	*no_tex;
 	mlx_texture_t	*so_tex;
 	mlx_texture_t	*we_tex;

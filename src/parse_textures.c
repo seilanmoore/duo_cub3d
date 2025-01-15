@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_textures.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smoore-a <smoore-a@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jjezzard <jjezzard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 20:02:48 by smoore-a          #+#    #+#             */
-/*   Updated: 2025/01/13 13:42:36 by smoore-a         ###   ########.fr       */
+/*   Updated: 2025/01/15 18:12:37 by jjezzard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ static bool	valid_texture(char *path)
 static void	load_textures(t_data *data, t_parse *to_parse)
 {
 	if (valid_texture(to_parse->no_path) && \
-	valid_texture(to_parse->no_path) && \
-	valid_texture(to_parse->no_path) && \
-	valid_texture(to_parse->no_path))
+	valid_texture(to_parse->so_path) && \
+	valid_texture(to_parse->we_path) && \
+	valid_texture(to_parse->ea_path))
 	{
 		data->no_tex = mlx_load_png(to_parse->no_path);
 		data->so_tex = mlx_load_png(to_parse->so_path);
