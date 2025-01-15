@@ -6,11 +6,12 @@
 /*   By: smoore-a <smoore-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 14:45:40 by smoore-a          #+#    #+#             */
-/*   Updated: 2025/01/12 14:46:00 by smoore-a         ###   ########.fr       */
+/*   Updated: 2025/01/15 22:00:45 by smoore-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+#include <unistd.h>
 
 static int	count_lines(const char *file)
 {
@@ -35,18 +36,17 @@ static int	count_lines(const char *file)
 	return (n_lines);
 }
 
-char	**parse_lines(const char *file)
+static char	**get_lines(int n_lines, int fd)
 {
 	char	**content;
-	int		n_lines;
-	int		fd;
 	int		i;
 
-	n_lines = count_lines(file);
 	content = malloc((n_lines + 1) * sizeof(char *));
-	fd = open(file, O_RDONLY);
-	if (fd == -1)
-		exit(print_msg("open", errno));
+	if(!content)
+	{
+		close(fd);
+		exit(print_msg("malloc", errno));
+	}
 	i = -1;
 	while (++i < n_lines)
 	{
@@ -59,6 +59,20 @@ char	**parse_lines(const char *file)
 		}
 	}
 	content[i] = NULL;
+	return (content);
+}
+
+char	**parse_lines(const char *file)
+{
+	char	**content;
+	int		n_lines;
+	int		fd;
+
+	n_lines = count_lines(file);
+	fd = open(file, O_RDONLY);
+	if (fd == -1)
+		exit(print_msg("open", errno));
+	content = get_lines(n_lines, fd);
 	if (close(fd) == -1)
 		exit(print_msg("close", errno));
 	return (content);

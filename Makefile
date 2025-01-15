@@ -6,7 +6,7 @@
 #    By: smoore-a <smoore-a@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/10 16:39:43 by smoore-a          #+#    #+#              #
-#    Updated: 2025/01/13 16:22:57 by smoore-a         ###   ########.fr        #
+#    Updated: 2025/01/15 22:46:52 by smoore-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,9 @@ OBJ_DIR = obj/
 
 SRC = main check_args check_map error \
 	parse_file parse_lines parse_textures parse_colors \
-	parse_map parse_utils ft_free cleanup
+	parse_map parse_utils \
+	graphics \
+	ft_free cleanup
 
 OBJ_FILES = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC)))
 
@@ -77,6 +79,9 @@ re: fclean all
 nocflag:
 	$(MAKE) $(LIBFT)
 	$(MAKE) CFLAGS="" $(NAME)
+
+nolibft: clean
+	$(MAKE) $(NAME)
 
 .PHONY: all clean fclean re bonus nocflag
 

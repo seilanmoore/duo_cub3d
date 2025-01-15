@@ -6,7 +6,7 @@
 /*   By: smoore-a <smoore-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 16:52:47 by smoore-a          #+#    #+#             */
-/*   Updated: 2025/01/13 18:35:23 by smoore-a         ###   ########.fr       */
+/*   Updated: 2025/01/15 22:23:57 by smoore-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct s_parse
 
 typedef struct s_data
 {
+	mlx_t			*mlx;
 	mlx_texture_t	*no_tex;
 	mlx_texture_t	*so_tex;
 	mlx_texture_t	*we_tex;
@@ -83,6 +84,9 @@ void	check_several_coord(t_data *data, char **map);
 char	*seek_element(char **content, char *element, int *row_b4_map);
 char	**seek_map(char **content);
 
+// graphics //
+void	graphics(t_data *data);
+
 // error //
 int		print_msg(const char *msg, int code);
 
@@ -92,6 +96,8 @@ void	ft_free(char **str);
 void	free_parse(t_parse *to_parse);
 
 // cleanup //
-void	cleanup(t_data *data);
+void	close_cub3d(void *data_);
+void			cleanup(t_data *data);
+int				clean_exit(t_data *data, char *msg, int code);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: smoore-a <smoore-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 16:21:45 by smoore-a          #+#    #+#             */
-/*   Updated: 2025/01/13 18:42:57 by smoore-a         ###   ########.fr       */
+/*   Updated: 2025/01/15 22:12:13 by smoore-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,14 @@ static void	check_characters(t_data *data)
 
 static bool	is_outside(char **map, int i, int j)
 {
-	int	len;
+	int	before_len;
+	int	after_len;
 
 	if (i == 0 || !map[i + 1] || j == 0 || !map[i][j + 1])
 		return (true);
-	len = ft_strlen(map[i + 1]);
-	if (j > len)
+	after_len = ft_strlen(map[i - 1]);
+	before_len = ft_strlen(map[i + 1]);
+	if (j >= before_len || j >= after_len)
 		return (true);
 	if (map[i + 1][j] == ' ' || \
 	map[i - 1][j] == ' ' || \
