@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: smoore-a <smoore-a@student.42.fr>          +#+  +:+       +#+         #
+#    By: jjezzard <jjezzard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/10 16:39:43 by smoore-a          #+#    #+#              #
-#    Updated: 2025/01/15 22:46:52 by smoore-a         ###   ########.fr        #
+#    Updated: 2025/01/17 12:34:17 by jjezzard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ INCLUDE = -Iinclude -Ilibft/include -I/usr/include -IMLX42/include
 
 HEADER = cub3d.h
 
-CC = clang
+CC = cc
 
 CFLAGS = -Wall -Werror -Wextra -g -O0 # -O3 -fsanitize=address -Ofast
 
