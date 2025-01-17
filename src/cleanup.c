@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleanup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smoore-a <smoore-a@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jjezzard <jjezzard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 18:16:11 by smoore-a          #+#    #+#             */
-/*   Updated: 2025/01/15 22:40:07 by smoore-a         ###   ########.fr       */
+/*   Updated: 2025/01/17 11:09:29 by jjezzard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	cleanup(t_data *data)
 	mlx_delete_texture(data->we_tex);
 	mlx_delete_texture(data->ea_tex);
 	free_array(&(data->map));
+	
 }
 
 int	clean_exit(t_data *data, char *msg, int code)
