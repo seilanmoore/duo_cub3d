@@ -6,14 +6,14 @@
 /*   By: smoore-a <smoore-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 14:45:40 by smoore-a          #+#    #+#             */
-/*   Updated: 2025/01/15 22:00:45 by smoore-a         ###   ########.fr       */
+/*   Updated: 2025/01/18 12:18:38 by smoore-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 #include <unistd.h>
 
-static int	count_lines(const char *file)
+static int	count_lines(t_data *data, const char *file)
 {
 	char	*line;
 	int		n_lines;
@@ -21,7 +21,7 @@ static int	count_lines(const char *file)
 
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
-		exit(print_msg("open", errno));
+		clean_exit(data, "open", errno);
 	n_lines = 0;
 	while (1)
 	{
@@ -32,20 +32,20 @@ static int	count_lines(const char *file)
 		n_lines++;
 	}
 	if (close(fd) == -1)
-		exit(print_msg("close", errno));
+		clean_exit(data, "close", errno);
 	return (n_lines);
 }
 
-static char	**get_lines(int n_lines, int fd)
+static char	**get_lines(t_data *data, int n_lines, int fd)
 {
 	char	**content;
 	int		i;
 
 	content = malloc((n_lines + 1) * sizeof(char *));
-	if(!content)
+	if (!content)
 	{
 		close(fd);
-		exit(print_msg("malloc", errno));
+		clean_exit(data, "malloc", errno);
 	}
 	i = -1;
 	while (++i < n_lines)
@@ -55,25 +55,25 @@ static char	**get_lines(int n_lines, int fd)
 		{
 			close(fd);
 			free_array(&content);
-			exit(print_msg("get_next_line", errno));
+			clean_exit(data, "get_next_line", 1);
 		}
 	}
 	content[i] = NULL;
 	return (content);
 }
 
-char	**parse_lines(const char *file)
+char	**parse_lines(t_data *data, const char *file)
 {
 	char	**content;
 	int		n_lines;
 	int		fd;
 
-	n_lines = count_lines(file);
+	n_lines = count_lines(data, file);
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
-		exit(print_msg("open", errno));
-	content = get_lines(n_lines, fd);
+		clean_exit(data, "open", errno);
+	content = get_lines(data, n_lines, fd);
 	if (close(fd) == -1)
-		exit(print_msg("close", errno));
+		clean_exit(data, "close", errno);
 	return (content);
 }

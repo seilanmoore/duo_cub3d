@@ -6,13 +6,13 @@
 #    By: smoore-a <smoore-a@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/10 16:39:43 by smoore-a          #+#    #+#              #
-#    Updated: 2025/01/15 22:46:52 by smoore-a         ###   ########.fr        #
+#    Updated: 2025/01/18 12:46:00 by smoore-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = cub3d
+NAME = cub3D
 
-INCLUDE = -Iinclude -Ilibft/include -I/usr/include -IMLX42/include
+INCLUDE = -Iinclude -Ilib/libft/include -I/usr/include -Ilib/minilibx-linux
 
 HEADER = cub3d.h
 
@@ -20,9 +20,13 @@ CC = clang
 
 CFLAGS = -Wall -Werror -Wextra -g -O0 # -O3 -fsanitize=address -Ofast
 
-L_FLAGS = -Llibft -lft -LMLX42/build -lmlx42 -ldl -lglfw -pthread -lm
+L_FLAGS = -Llib/libft -lft \
+	-Llib/minilibx-linux -lmlx_Linux \
+	-L/usr/lib -lXext -lX11 -lm -lbsd
 
-LIBFT = libft/libft.a
+LIBFT = lib/libft/libft.a
+
+MLX = lib/minilibx-linux/libmlx_Linux.a
 
 RM = rm -rf
 
@@ -42,7 +46,7 @@ VPATH = src:include
 
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(OBJ_FILES)
+$(NAME): $(MLX) $(LIBFT) $(OBJ_FILES)
 	$(CC) $(CFLAGS) $(INCLUDE) $^ $(L_FLAGS) -o $@
 	@echo "$(NAME) compiled"
 
@@ -52,27 +56,28 @@ $(OBJ_DIR)%.o: %.c $(HEADER)
 	@echo "$< compiled"
 
 $(LIBFT):
-	@make all -C libft
-	@echo "$(LIBFT) compiled"
+	@make all -C lib/libft
+	@echo "Libft compiled"
 
-#bonus:
-#	@make all -C bonus
+$(MLX):
+	@make all -C lib/minilibx-linux
+	@echo "Minilibx compiled"
+
+mlxclean:
+	@make clean -C lib/minilibx-linux
+	@echo "Minilibx removed"
 
 clean:
 	$(RM) $(OBJ_DIR)
 	@echo "Object files removed"
-	@make clean -C libft
+	@make clean -C lib/libft
 	@echo "Libft object files removed"
-#	@make clean -C bonus
-#	@echo "Bonus object files removed"
 
 fclean: clean
 	$(RM) $(NAME)
 	@echo "$(NAME) removed"
 	$(RM) $(LIBFT)
 	@echo "$(LIBFT) removed"
-#	$(RM) $(BONUS)
-#	@echo "$(BONUS) removed"
 
 re: fclean all
 
@@ -80,10 +85,7 @@ nocflag:
 	$(MAKE) $(LIBFT)
 	$(MAKE) CFLAGS="" $(NAME)
 
-nolibft: clean
-	$(MAKE) $(NAME)
-
-.PHONY: all clean fclean re bonus nocflag
+.PHONY: all clean mlxclean fclean re nocflag
 
 ifndef VERBOSE
 .SILENT:

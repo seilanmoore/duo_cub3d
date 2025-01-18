@@ -6,7 +6,7 @@
 /*   By: smoore-a <smoore-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 20:01:33 by smoore-a          #+#    #+#             */
-/*   Updated: 2025/01/13 15:48:50 by smoore-a         ###   ########.fr       */
+/*   Updated: 2025/01/18 12:22:56 by smoore-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,7 @@ static void	valid_color(t_data *data, t_parse *to_parse)
 		data->ceiling_color[i] < 0 || data->ceiling_color[i] > 255)
 		{
 			free_parse(to_parse);
-			cleanup(data);
-			exit(print_msg("bad color", errno));
+			clean_exit(data, "bad color", 1);
 		}
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_textures.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjezzard <jjezzard@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smoore-a <smoore-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 20:02:48 by smoore-a          #+#    #+#             */
-/*   Updated: 2025/01/15 18:12:37 by jjezzard         ###   ########.fr       */
+/*   Updated: 2025/01/18 12:23:50 by smoore-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,33 +41,46 @@ static void	extract_path(t_parse *to_parse)
 	to_parse->ea_path = ft_strtrim(to_parse->ea_path, " \n");
 }
 
-static bool	valid_texture(char *path)
+static bool	valid_texture(t_data *data, char *path)
 {
-	mlx_texture_t	*texture;
+	void	*texture;
+	int		width;
+	int		height;
 
-	texture = mlx_load_png(path);
+	width = 128;
+	height = 128;
+	texture = mlx_xpm_file_to_image(data->mlx, path, &width, &height);
 	if (!texture)
 		return (false);
-	mlx_delete_texture(texture);
+	mlx_destroy_image(data->mlx, texture);
 	return (true);
 }
 
 static void	load_textures(t_data *data, t_parse *to_parse)
 {
-	if (valid_texture(to_parse->no_path) && \
-	valid_texture(to_parse->so_path) && \
-	valid_texture(to_parse->we_path) && \
-	valid_texture(to_parse->ea_path))
+	int	width;
+	int	height;
+
+	width = 128;
+	height = 128;
+	if (valid_texture(data, to_parse->no_path) && \
+	valid_texture(data, to_parse->so_path) && \
+	valid_texture(data, to_parse->we_path) && \
+	valid_texture(data, to_parse->ea_path))
 	{
-		data->no_tex = mlx_load_png(to_parse->no_path);
-		data->so_tex = mlx_load_png(to_parse->so_path);
-		data->we_tex = mlx_load_png(to_parse->we_path);
-		data->ea_tex = mlx_load_png(to_parse->ea_path);
+		data->no_tex = mlx_xpm_file_to_image(
+				data->mlx, to_parse->no_path, &width, &height);
+		data->so_tex = mlx_xpm_file_to_image(
+				data->mlx, to_parse->so_path, &width, &height);
+		data->we_tex = mlx_xpm_file_to_image(
+				data->mlx, to_parse->we_path, &width, &height);
+		data->ea_tex = mlx_xpm_file_to_image(
+				data->mlx, to_parse->ea_path, &width, &height);
 	}
 	else
 	{
 		free_parse(to_parse);
-		exit(print_msg("mlx_load_png", errno));
+		clean_exit(data, "mlx_xpm_file_to_image", 1);
 	}
 }
 
@@ -81,6 +94,6 @@ void	parse_textures(t_data *data, t_parse *to_parse)
 	else
 	{
 		free_array(&(to_parse->content));
-		exit(print_msg("bad path", errno));
+		clean_exit(data, "bad path", 1);
 	}
 }

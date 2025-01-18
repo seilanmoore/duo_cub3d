@@ -1,10 +1,10 @@
-NO ./textures/Texture0.png
+NO textures/Texture0.xpm
 
-SO ./textures/Texture1.png
+SO textures/Texture1.xpm
 
-WE ./textures/Texture2.png
+WE textures/Texture2.xpm
 
-EA ./textures/Texture3.png
+EA textures/Texture3.xpm
 
 F 220,100,0
 C 225,30,0

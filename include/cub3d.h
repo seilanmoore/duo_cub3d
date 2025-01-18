@@ -6,15 +6,17 @@
 /*   By: smoore-a <smoore-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 16:52:47 by smoore-a          #+#    #+#             */
-/*   Updated: 2025/01/15 22:57:56 by smoore-a         ###   ########.fr       */
+/*   Updated: 2025/01/18 12:16:42 by smoore-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "../MLX42/include/MLX42/MLX42.h"
-# include "../libft/include/libft.h"
+# include "../lib/libft/include/libft.h"
+# include "../lib/minilibx-linux/mlx.h"
+# include <X11/keysym.h>
+# include <X11/X.h>
 # include <fcntl.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -25,6 +27,9 @@
 # include <stdbool.h>
 
 # define PROTOTYPE "prototype: ./cub3d MAP_FILENAME_PATH"
+
+# define DESTROY_NOTIF 17
+# define NO_EVENT_MASK 0
 
 # define WIDTH 500
 # define HEIGHT 500
@@ -44,18 +49,15 @@ typedef struct s_parse
 
 typedef struct s_data
 {
-	mlx_t			*mlx;
-	mlx_image_t		*no_img;
-	mlx_image_t		*so_img;
-	mlx_image_t		*we_img;
-	mlx_image_t		*ea_img;
-	mlx_texture_t	*no_tex;
-	mlx_texture_t	*so_tex;
-	mlx_texture_t	*we_tex;
-	mlx_texture_t	*ea_tex;
-	int				floor_color[3];
-	int				ceiling_color[3];
-	char			**map;
+	void	*mlx;
+	void	*mlx_win;
+	void	*no_tex;
+	void	*so_tex;
+	void	*we_tex;
+	void	*ea_tex;
+	int		floor_color[3];
+	int		ceiling_color[3];
+	char	**map;
 }	t_data;
 
 
@@ -69,7 +71,7 @@ void	check_map(t_data *data);
 void	parse_file(t_data *data, const char *file);
 
 // parse_lines //
-char	**parse_lines(const char *file);
+char	**parse_lines(t_data *data, const char *file);
 
 // parse_elements //
 void	parse_elements(t_data *data, t_parse *to_parse);
@@ -101,7 +103,7 @@ void	free_parse(t_parse *to_parse);
 
 // cleanup //
 void	close_cub3d(void *data_);
-void			cleanup(t_data *data);
-int				clean_exit(t_data *data, char *msg, int code);
+void	cleanup(t_data *data);
+int		clean_exit(t_data *data, char *msg, int code);
 
 #endif

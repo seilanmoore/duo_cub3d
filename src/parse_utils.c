@@ -6,7 +6,7 @@
 /*   By: smoore-a <smoore-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 19:59:07 by smoore-a          #+#    #+#             */
-/*   Updated: 2025/01/13 18:35:15 by smoore-a         ###   ########.fr       */
+/*   Updated: 2025/01/18 12:24:26 by smoore-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,7 @@ void	check_several_coord(t_data *data, char **map)
 			increase_coord(map[i][j], coord);
 	}
 	if ((coord[0] + coord[1] + coord[2] + coord[3]) != 1)
-	{
-		cleanup(data);
-		exit(print_msg("bad map: bad coordinate", errno));
-	}
+		clean_exit(data, "bad map: bad coordinate", 1);
 }
 
 char	*seek_element(char **content, char *element, int *row_b4_map)

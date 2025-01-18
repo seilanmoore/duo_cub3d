@@ -6,7 +6,7 @@
 /*   By: smoore-a <smoore-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 14:55:25 by smoore-a          #+#    #+#             */
-/*   Updated: 2025/01/13 18:31:26 by smoore-a         ###   ########.fr       */
+/*   Updated: 2025/01/18 12:22:51 by smoore-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,7 @@ static int	count_row(char **map, t_parse *to_parse, t_data *data)
 	if (i < 3)
 	{
 		free_parse(to_parse);
-		cleanup(data);
-		exit(print_msg("bad map: few rows", 1));
+		clean_exit(data, "bad map: few rows", 1);
 	}
 	return (i);
 }
@@ -44,8 +43,7 @@ static void	extract_map(t_data *data, t_parse *to_parse)
 	if (!to_parse->map)
 	{
 		free_parse(to_parse);
-		cleanup(data);
-		exit(print_msg("no map", 1));
+		clean_exit(data, "bad map: no map", 1);
 	}
 	row = count_row(to_parse->map, to_parse, data);
 	data->map = malloc((row + 1) * sizeof(char *));
@@ -56,8 +54,7 @@ static void	extract_map(t_data *data, t_parse *to_parse)
 		if (!(data->map[i]))
 		{
 			free_parse(to_parse);
-			cleanup(data);
-			exit(print_msg("ft_strtrim", errno));
+			clean_exit(data, "ft_strtrim", 1);
 		}
 	}
 	data->map[i] = NULL;

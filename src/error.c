@@ -6,7 +6,7 @@
 /*   By: smoore-a <smoore-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 20:12:51 by smoore-a          #+#    #+#             */
-/*   Updated: 2025/01/15 21:50:11 by smoore-a         ###   ########.fr       */
+/*   Updated: 2025/01/18 11:23:12 by smoore-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	print_msg(const char *msg, int code)
 {
 	size_t	len;
 
-	if(!msg)
+	if (!msg)
 		return (code);
 	len = ft_strlen(msg);
 	write(2, "Error: ", 7);
