@@ -6,7 +6,7 @@
 #    By: smoore-a <smoore-a@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/10 16:39:43 by smoore-a          #+#    #+#              #
-#    Updated: 2025/01/18 12:46:00 by smoore-a         ###   ########.fr        #
+#    Updated: 2025/01/18 13:06:10 by smoore-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ INCLUDE = -Iinclude -Ilib/libft/include -I/usr/include -Ilib/minilibx-linux
 
 HEADER = cub3d.h
 
-CC = clang
+CC = cc
 
 CFLAGS = -Wall -Werror -Wextra -g -O0 # -O3 -fsanitize=address -Ofast
 

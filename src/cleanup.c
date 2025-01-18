@@ -6,7 +6,7 @@
 /*   By: smoore-a <smoore-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 18:16:11 by smoore-a          #+#    #+#             */
-/*   Updated: 2025/01/18 12:36:20 by smoore-a         ###   ########.fr       */
+/*   Updated: 2025/01/18 13:06:20 by smoore-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	cleanup(t_data *data)
 	if (data->ea_tex)
 		mlx_destroy_image(data->mlx, data->ea_tex);
 	free_array(&(data->map));
+
 }
 
 int	clean_exit(t_data *data, char *msg, int code)
