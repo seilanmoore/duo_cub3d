@@ -6,7 +6,7 @@
 #    By: smoore-a <smoore-a@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/10 16:39:43 by smoore-a          #+#    #+#              #
-#    Updated: 2025/01/18 13:06:10 by smoore-a         ###   ########.fr        #
+#    Updated: 2025/01/25 22:24:25 by smoore-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,9 +36,11 @@ OBJ_DIR = obj/
 
 SRC = main check_args check_map error \
 	parse_file parse_lines parse_textures parse_colors \
-	parse_map parse_utils \
-	graphics \
-	ft_free cleanup
+	parse_map parse_utils init_data init_utils \
+	graphics raycasting dda draw draw_utils \
+	player_moves time \
+	ft_free clean_exit \
+	utils
 
 OBJ_FILES = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC)))
 

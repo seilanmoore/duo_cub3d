@@ -6,22 +6,34 @@
 /*   By: smoore-a <smoore-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 19:59:07 by smoore-a          #+#    #+#             */
-/*   Updated: 2025/01/18 12:24:26 by smoore-a         ###   ########.fr       */
+/*   Updated: 2025/01/19 11:41:48 by smoore-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-static	void	increase_coord(int c, int *coord)
+static void	increase_set_coord(t_data *data, int c, int *coord)
 {
 	if (c == 'N')
+	{
 		coord[0]++;
+		data->coord = 'N';
+	}
 	else if (c == 'S')
+	{
 		coord[1]++;
+		data->coord = 'S';
+	}
 	else if (c == 'W')
+	{
 		coord[2]++;
+		data->coord = 'W';
+	}
 	else if (c == 'E')
+	{
 		coord[3]++;
+		data->coord = 'E';
+	}
 }
 
 void	check_several_coord(t_data *data, char **map)
@@ -38,7 +50,7 @@ void	check_several_coord(t_data *data, char **map)
 	{
 		j = -1;
 		while (map[i][++j])
-			increase_coord(map[i][j], coord);
+			increase_set_coord(data, map[i][j], coord);
 	}
 	if ((coord[0] + coord[1] + coord[2] + coord[3]) != 1)
 		clean_exit(data, "bad map: bad coordinate", 1);

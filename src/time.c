@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   time.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smoore-a <smoore-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/10 16:37:46 by smoore-a          #+#    #+#             */
-/*   Updated: 2025/01/19 11:58:19 by smoore-a         ###   ########.fr       */
+/*   Created: 2025/01/25 21:44:53 by smoore-a          #+#    #+#             */
+/*   Updated: 2025/01/25 22:52:56 by smoore-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+#include <sys/time.h>
 
-int	main(int argc, char **argv)
+void	set_time(t_data *data)
 {
-	t_data	data;
+	double		frame_time;
+	t_timeval	tv;
 
-	check_args(argc, argv);
-	data = (t_data){0};
-	data.mlx = mlx_init();
-	if (!data.mlx)
-		exit(print_msg("mlx_init", 1));
-	parse_file(&data, argv[1]);
-	graphics(&data);
-	clean_exit(&data, NULL, 0);
-	return (EXIT_SUCCESS);
+	data->old_time = data->time;
+	gettimeofday(&tv, NULL);
+	data->time = (tv.tv_sec * 1000) + (tv.tv_usec / 1000);
+	frame_time = (data->time - data->old_time) / 1000.0;
+	data->player.move_speed = frame_time * (double)MOVE_SPEED;
+	data->player.rot_speed = frame_time * (double)ROT_SPEED;
 }

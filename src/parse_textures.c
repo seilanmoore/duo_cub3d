@@ -6,7 +6,7 @@
 /*   By: smoore-a <smoore-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 20:02:48 by smoore-a          #+#    #+#             */
-/*   Updated: 2025/01/18 12:23:50 by smoore-a         ###   ########.fr       */
+/*   Updated: 2025/01/18 13:55:56 by smoore-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ static void	load_textures(t_data *data, t_parse *to_parse)
 	int	width;
 	int	height;
 
-	width = 128;
-	height = 128;
+	width = 0;
+	height = 0;
 	if (valid_texture(data, to_parse->no_path) && \
 	valid_texture(data, to_parse->so_path) && \
 	valid_texture(data, to_parse->we_path) && \
@@ -94,6 +94,6 @@ void	parse_textures(t_data *data, t_parse *to_parse)
 	else
 	{
 		free_array(&(to_parse->content));
-		clean_exit(data, "bad path", 1);
+		clean_exit(data, "bad path element", 1);
 	}
 }

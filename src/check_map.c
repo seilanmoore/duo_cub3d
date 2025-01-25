@@ -6,7 +6,7 @@
 /*   By: smoore-a <smoore-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 16:21:45 by smoore-a          #+#    #+#             */
-/*   Updated: 2025/01/15 22:12:13 by smoore-a         ###   ########.fr       */
+/*   Updated: 2025/01/19 12:56:31 by smoore-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,7 @@ static void	check_characters(t_data *data)
 		while (map[i][++j])
 		{
 			if (!valid_char(map[i][j]))
-			{
-				cleanup(data);
-				exit(print_msg("bad map: bad character", errno));
-			}
+				clean_exit(data, "bad map: bad character", 1);
 		}
 	}
 }
@@ -88,10 +85,7 @@ static void	check_wall(t_data *data)
 			if (map[i][j] != ' ' && \
 			map[i][j] != '1' && \
 			is_outside(map, i, j))
-			{
-				cleanup(data);
-				exit(print_msg("bad map: bad wall", errno));
-			}
+				clean_exit(data, "bad map: bad wall", 1);
 		}
 	}
 }
