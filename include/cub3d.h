@@ -6,7 +6,7 @@
 /*   By: smoore-a <smoore-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 16:52:47 by smoore-a          #+#    #+#             */
-/*   Updated: 2025/01/25 23:01:31 by smoore-a         ###   ########.fr       */
+/*   Updated: 2025/01/26 00:38:03 by smoore-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,10 @@
 # define DESTROY_NOTIF 17
 # define NO_EVENT_MASK 0
 
+# define FPS_LIMIT 60
 # define FOV 66
 # define MOVE_SPEED 5
-# define ROT_SPEED 10
+# define ROT_SPEED 5
 # define WALL 1
 
 # define WIDTH 640
@@ -179,8 +180,8 @@ void	draw_frame(t_data *data);
 int		get_rgb(int r, int g, int b);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
-// time //
-void	set_time(t_data *data);
+// limit_fps //
+void	limit_fps(t_data *data);
 
 // error //
 int		print_msg(const char *msg, int code);

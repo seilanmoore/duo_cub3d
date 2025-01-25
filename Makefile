@@ -6,7 +6,7 @@
 #    By: smoore-a <smoore-a@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/10 16:39:43 by smoore-a          #+#    #+#              #
-#    Updated: 2025/01/25 22:24:25 by smoore-a         ###   ########.fr        #
+#    Updated: 2025/01/26 00:38:14 by smoore-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,9 +16,9 @@ INCLUDE = -Iinclude -Ilib/libft/include -I/usr/include -Ilib/minilibx-linux
 
 HEADER = cub3d.h
 
-CC = cc
+CC = gcc
 
-CFLAGS = -Wall -Werror -Wextra -g -O0 # -O3 -fsanitize=address -Ofast
+CFLAGS = -Wall -Werror -Wextra -g -O0 # -ffast-math -O3 -fsanitize=address -Ofast
 
 L_FLAGS = -Llib/libft -lft \
 	-Llib/minilibx-linux -lmlx_Linux \
@@ -38,7 +38,7 @@ SRC = main check_args check_map error \
 	parse_file parse_lines parse_textures parse_colors \
 	parse_map parse_utils init_data init_utils \
 	graphics raycasting dda draw draw_utils \
-	player_moves time \
+	player_moves limit_fps \
 	ft_free clean_exit \
 	utils
 

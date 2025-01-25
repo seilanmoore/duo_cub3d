@@ -6,7 +6,7 @@
 /*   By: smoore-a <smoore-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 22:33:45 by smoore-a          #+#    #+#             */
-/*   Updated: 2025/01/25 22:56:47 by smoore-a         ###   ########.fr       */
+/*   Updated: 2025/01/26 00:37:46 by smoore-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	draw_frame(t_data *data)
 	while (++i < WIDTH)
 		draw_ray(data, i);
 	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img, 0, 0);
-	set_time(data);
 	mlx_destroy_image(data->mlx, data->img);
 	data->img = NULL;
+	limit_fps(data);
 }
