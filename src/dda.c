@@ -6,7 +6,7 @@
 /*   By: smoore-a <smoore-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 18:33:52 by smoore-a          #+#    #+#             */
-/*   Updated: 2025/01/25 21:41:13 by smoore-a         ###   ########.fr       */
+/*   Updated: 2025/01/26 14:45:39 by smoore-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,14 +53,14 @@ static	void	choose_direction(t_ray *ray, int *map_x, int *map_y)
 		ray->side_dist_x += ray->delta_dist_x;
 		*map_x += ray->step_x;
 		ray->side = 0;
-		ray->wall_color = get_rgb(0, 0, 255);
+		ray->wall_color = get_rgb(0, 125, 0);
 	}
 	else
 	{
 		ray->side_dist_y += ray->delta_dist_y;
 		*map_y += ray->step_y;
 		ray->side = 1;
-		ray->wall_color = get_rgb(255, 0, 0);
+		ray->wall_color = get_rgb(125, 0, 0);
 	}
 }
 

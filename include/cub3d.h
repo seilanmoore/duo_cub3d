@@ -6,7 +6,7 @@
 /*   By: smoore-a <smoore-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 16:52:47 by smoore-a          #+#    #+#             */
-/*   Updated: 2025/01/26 00:38:03 by smoore-a         ###   ########.fr       */
+/*   Updated: 2025/01/26 14:46:53 by smoore-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,24 @@
 
 # define FPS_LIMIT 60
 # define FOV 66
-# define MOVE_SPEED 5
-# define ROT_SPEED 5
+# define MOVE_SPEED 6
+# define ROT_SPEED 6
 # define WALL 1
 
 # define WIDTH 640
 # define HEIGHT 480
 
 typedef struct timeval	t_timeval;
+
+typedef struct s_keys
+{
+	int	w;
+	int	a;
+	int	s;
+	int	d;
+	int	left;
+	int	right;
+}	t_keys;
 
 typedef struct s_parse
 {
@@ -118,6 +128,7 @@ typedef struct s_data
 	int			endian;
 	time_t		time;
 	time_t		old_time;
+	t_keys		key;
 	t_ray		ray[WIDTH];
 	t_player	player;
 }	t_data;
@@ -160,7 +171,13 @@ void	set_player_direction(t_player *player, int coord);
 void	set_plane(t_player *player);
 void	convert_map(t_data *data);
 
-// player_moves //
+// player_move //
+void	move_forward(t_data *data);
+void	move_backwards(t_data *data);
+void	move_to_left(t_data *data);
+void	move_to_right(t_data *data);
+
+// player_rotation //
 void	rotate_player_left(t_data *data);
 void	rotate_player_right(t_data *data);
 
@@ -174,7 +191,7 @@ void	start_rays(t_data *data);
 void	perform_dda(t_data *data, t_ray *ray, t_player *player);
 
 // draw //
-void	draw_frame(t_data *data);
+int		draw_frame(t_data *data);
 
 // draw_utils //
 int		get_rgb(int r, int g, int b);

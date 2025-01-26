@@ -6,7 +6,7 @@
 #    By: smoore-a <smoore-a@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/10 16:39:43 by smoore-a          #+#    #+#              #
-#    Updated: 2025/01/26 00:38:14 by smoore-a         ###   ########.fr        #
+#    Updated: 2025/01/26 00:52:22 by smoore-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ SRC = main check_args check_map error \
 	parse_file parse_lines parse_textures parse_colors \
 	parse_map parse_utils init_data init_utils \
 	graphics raycasting dda draw draw_utils \
-	player_moves limit_fps \
+	player_move player_rotation limit_fps \
 	ft_free clean_exit \
 	utils
 

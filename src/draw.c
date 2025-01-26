@@ -6,11 +6,27 @@
 /*   By: smoore-a <smoore-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 22:33:45 by smoore-a          #+#    #+#             */
-/*   Updated: 2025/01/26 00:37:46 by smoore-a         ###   ########.fr       */
+/*   Updated: 2025/01/26 14:39:37 by smoore-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+static void	handle_movement(t_data *data)
+{
+	if (data->key.w)
+		move_forward(data);
+	if (data->key.s)
+		move_backwards(data);
+	if (data->key.a)
+		move_to_left(data);
+	if (data->key.d)
+		move_to_right(data);
+	if (data->key.left)
+		rotate_player_left(data);
+	if (data->key.right)
+		rotate_player_right(data);
+}
 
 static void	draw_ceiling(t_data *data, int x)
 {
@@ -68,10 +84,11 @@ static void	draw_ray(t_data *data, int x)
 	draw_floor(data, x, y);
 }
 
-void	draw_frame(t_data *data)
+int	draw_frame(t_data *data)
 {
 	int	i;
 
+	handle_movement(data);
 	data->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 	if (!data->img)
 		clean_exit(data, "mlx_new_image", 1);
@@ -86,4 +103,5 @@ void	draw_frame(t_data *data)
 	mlx_destroy_image(data->mlx, data->img);
 	data->img = NULL;
 	limit_fps(data);
+	return (0);
 }
