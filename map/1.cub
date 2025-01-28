@@ -1,10 +1,10 @@
-NO textures/eagle.xpm
+NO textures/Texture12.xpm
 
-SO textures/purplestone.xpm
+SO textures/Texture13.xpm
 
-WE textures/greystone.xpm
+WE textures/Texture14.xpm
 
-EA textures/colorstone.xpm
+EA textures/Texture11.xpm
 
 F 125,125,125
 C 0,50,100
