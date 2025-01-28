@@ -6,7 +6,7 @@
 /*   By: smoore-a <smoore-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 20:23:33 by smoore-a          #+#    #+#             */
-/*   Updated: 2025/01/26 14:16:51 by smoore-a         ###   ########.fr       */
+/*   Updated: 2025/01/26 14:54:51 by smoore-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,3 @@ void	rotate_player_right(t_data *data)
 	data->player.plane_y = old_plane_x * sin_rot_speed + \
 		data->player.plane_y * cos_rot_speed;
 }
-

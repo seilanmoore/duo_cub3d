@@ -6,7 +6,7 @@
 /*   By: smoore-a <smoore-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 16:21:45 by smoore-a          #+#    #+#             */
-/*   Updated: 2025/01/19 12:56:31 by smoore-a         ###   ########.fr       */
+/*   Updated: 2025/01/27 18:17:05 by smoore-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,6 @@ static void	check_wall(t_data *data)
 void	check_map(t_data *data)
 {
 	check_characters(data);
-	check_several_coord(data, data->map);
+	check_several_dir(data, data->map);
 	check_wall(data);
 }

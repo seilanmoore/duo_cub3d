@@ -6,7 +6,7 @@
 /*   By: smoore-a <smoore-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 21:36:02 by smoore-a          #+#    #+#             */
-/*   Updated: 2025/01/26 14:34:45 by smoore-a         ###   ########.fr       */
+/*   Updated: 2025/01/26 14:52:35 by smoore-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,10 @@ void	graphics(t_data *data)
 	data->mlx_win = mlx_new_window(data->mlx, WIDTH, HEIGHT, "Cub3D");
 	if (!data->mlx_win)
 		clean_exit(data, "mlx_new_window", 1);
-	mlx_loop_hook(data->mlx, (void *)draw_frame, data);
-	// mlx_hook(data->mlx_win, KeyPress, KeyPressMask, (void *)key_hook, data);
+	mlx_loop_hook(data->mlx, draw_frame, data);
 	mlx_hook(data->mlx_win, KeyPress, KeyPressMask, key_press, data);
 	mlx_hook(data->mlx_win, KeyRelease, KeyReleaseMask, key_release, data);
 	mlx_hook(data->mlx_win, DESTROY_NOTIF,
-		NO_EVENT_MASK, (void *)close_cub3d, data);
+		NO_EVENT_MASK, close_cub3d, data);
 	mlx_loop(data->mlx);
 }

@@ -6,7 +6,7 @@
 /*   By: smoore-a <smoore-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 17:25:41 by smoore-a          #+#    #+#             */
-/*   Updated: 2025/01/25 20:05:34 by smoore-a         ###   ########.fr       */
+/*   Updated: 2025/01/28 14:51:42 by smoore-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	init_settings(t_data *data)
 static void	init_player(t_data *data)
 {
 	set_player_position(data, &(data->player));
-	set_player_direction(&(data->player), data->player.init_coord);
+	set_player_direction(&(data->player), data->init_dir);
 	set_plane(&(data->player));
 }
 
@@ -43,20 +43,31 @@ static void	init_map(t_data *data)
 			data->map_height = i + 1;
 	}
 	convert_map(data);
+	free_array(&(data->map));
 }
+
+static void	init_textures(t_data *data)
+{
+	image_to_array(data);
+	free_textures_img(data);
+	data->tex_init = true;
+}
+
+/* int y = -1, x;
+while (++y < data->map_height)
+{
+	x = -1;
+	while (++x < data->map_width)
+		printf("%d", data->a_map[x][y]);
+	printf("\n");
+}
+printf("Player pos_x: %f\nPlayer pos_y: %f\n",
+data->player.pos_x, data->player.pos_y); */
 
 void	init_data(t_data *data)
 {
 	init_settings(data);
 	init_player(data);
 	init_map(data);
-	int y = -1, x;
-	while (++y < data->map_height)
-	{
-		x = -1;
-		while (++x < data->map_width)
-			printf("%d", data->a_map[x][y]);
-		printf("\n");
-	}
-	printf("Player pos_x: %f\nPlayer pos_y: %f\n", data->player.pos_x, data->player.pos_y);
+	init_textures(data);
 }

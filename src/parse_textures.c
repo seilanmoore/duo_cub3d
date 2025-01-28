@@ -6,7 +6,7 @@
 /*   By: smoore-a <smoore-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 20:02:48 by smoore-a          #+#    #+#             */
-/*   Updated: 2025/01/18 13:55:56 by smoore-a         ###   ########.fr       */
+/*   Updated: 2025/01/28 13:31:31 by smoore-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,39 +43,35 @@ static void	extract_path(t_parse *to_parse)
 
 static bool	valid_texture(t_data *data, char *path)
 {
-	void	*texture;
-	int		width;
-	int		height;
+	t_img	texture;
 
-	width = 128;
-	height = 128;
-	texture = mlx_xpm_file_to_image(data->mlx, path, &width, &height);
-	if (!texture)
+	texture.img_ptr = mlx_xpm_file_to_image(\
+		data->mlx, path, &(texture.width), &(texture.height));
+	if (!texture.img_ptr)
 		return (false);
-	mlx_destroy_image(data->mlx, texture);
+	mlx_destroy_image(data->mlx, texture.img_ptr);
 	return (true);
 }
 
 static void	load_textures(t_data *data, t_parse *to_parse)
 {
-	int	width;
-	int	height;
-
-	width = 0;
-	height = 0;
 	if (valid_texture(data, to_parse->no_path) && \
 	valid_texture(data, to_parse->so_path) && \
 	valid_texture(data, to_parse->we_path) && \
 	valid_texture(data, to_parse->ea_path))
 	{
-		data->no_tex = mlx_xpm_file_to_image(
-				data->mlx, to_parse->no_path, &width, &height);
-		data->so_tex = mlx_xpm_file_to_image(
-				data->mlx, to_parse->so_path, &width, &height);
-		data->we_tex = mlx_xpm_file_to_image(
-				data->mlx, to_parse->we_path, &width, &height);
-		data->ea_tex = mlx_xpm_file_to_image(
-				data->mlx, to_parse->ea_path, &width, &height);
+		data->tex_img[0].img_ptr = mlx_xpm_file_to_image(
+				data->mlx, to_parse->no_path, \
+				&(data->tex_img[0].width), &(data->tex_img[0].height));
+		data->tex_img[1].img_ptr = mlx_xpm_file_to_image(
+				data->mlx, to_parse->so_path, \
+				&(data->tex_img[1].width), &(data->tex_img[1].height));
+		data->tex_img[2].img_ptr = mlx_xpm_file_to_image(
+				data->mlx, to_parse->we_path, \
+				&(data->tex_img[2].width), &(data->tex_img[2].height));
+		data->tex_img[3].img_ptr = mlx_xpm_file_to_image(
+				data->mlx, to_parse->ea_path, \
+				&(data->tex_img[3].width), &(data->tex_img[3].height));
 	}
 	else
 	{

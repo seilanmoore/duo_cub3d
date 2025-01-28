@@ -6,7 +6,7 @@
 #    By: smoore-a <smoore-a@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/10 16:39:43 by smoore-a          #+#    #+#              #
-#    Updated: 2025/01/26 00:52:22 by smoore-a         ###   ########.fr        #
+#    Updated: 2025/01/28 14:52:24 by smoore-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ HEADER = cub3d.h
 
 CC = gcc
 
-CFLAGS = -Wall -Werror -Wextra -g -O0 # -ffast-math -O3 -fsanitize=address -Ofast
+CFLAGS = -Wall -Werror -Wextra -O3 -ffast-math # -g -O0 -ffast-math -O3
 
 L_FLAGS = -Llib/libft -lft \
 	-Llib/minilibx-linux -lmlx_Linux \
@@ -34,13 +34,12 @@ SRC_DIR = src/
 
 OBJ_DIR = obj/
 
-SRC = main check_args check_map error \
-	parse_file parse_lines parse_textures parse_colors \
-	parse_map parse_utils init_data init_utils \
+SRC = main check_args check_map check_map_utils \
+	parse_file parse_lines parse_colors parse_map parse_textures parse_utils \
+	init_data init_utils_player init_utils_map  init_utils_tex \
 	graphics raycasting dda draw draw_utils \
 	player_move player_rotation limit_fps \
-	ft_free clean_exit \
-	utils
+	ft_free clean_exit error
 
 OBJ_FILES = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC)))
 

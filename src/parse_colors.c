@@ -6,17 +6,17 @@
 /*   By: smoore-a <smoore-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 20:01:33 by smoore-a          #+#    #+#             */
-/*   Updated: 2025/01/18 12:22:56 by smoore-a         ###   ########.fr       */
+/*   Updated: 2025/01/28 14:14:30 by smoore-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-static int	extract_floor_color(t_parse *to_parse, char **content)
+static int	extract_ceiling_color(t_parse *to_parse, char **content)
 {
 	char	*element;
 
-	element = seek_element(content, "F ", &(to_parse->row_b4_map));
+	element = seek_element(content, "C ", &(to_parse->row_b4_map));
 	if (element)
 		element++;
 	if (!element)
@@ -40,11 +40,11 @@ static int	extract_floor_color(t_parse *to_parse, char **content)
 	return (0);
 }
 
-static int	extract_ceiling_color(t_parse *to_parse, char **content)
+static int	extract_floor_color(t_parse *to_parse, char **content)
 {
 	char	*element;
 
-	element = seek_element(content, "C ", &(to_parse->row_b4_map));
+	element = seek_element(content, "F ", &(to_parse->row_b4_map));
 	if (element)
 		element++;
 	if (!element)
