@@ -6,7 +6,7 @@
 /*   By: smoore-a <smoore-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 20:12:51 by smoore-a          #+#    #+#             */
-/*   Updated: 2025/01/18 13:54:43 by smoore-a         ###   ########.fr       */
+/*   Updated: 2025/01/29 13:07:31 by smoore-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,15 @@ int	print_msg(const char *msg, int code)
 	if (!msg)
 		return (code);
 	len = ft_strlen(msg);
-	write(2, "Error: ", 7);
+	if (!write(2, "Error: ", 7))
+		return (code);
 	if (!ft_strncmp(strerror(errno), "Success", 7) || \
 	!ft_strncmp(strerror(errno), "Resource temporarily unavailable", 32))
 	{
-		write(2, msg, len);
-		write(2, "\n", 1);
+		if (!write(2, msg, len))
+			return (code);
+		if (!write(2, "\n", 1))
+			return (code);
 	}
 	else
 		perror(msg);

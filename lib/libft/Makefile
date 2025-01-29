@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: smoore-a <smoore-a@student.42malaga.com    +#+  +:+       +#+         #
+#    By: smoore-a <smoore-a@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/27 15:26:15 by smoore-a          #+#    #+#              #
-#    Updated: 2024/06/08 14:23:04 by smoore-a         ###   ########.fr        #
+#    Updated: 2025/01/29 13:06:51 by smoore-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = libft.a
 
 CC = clang
 
-CFLAGS = -Wall -Werror -Wextra -O3
+CFLAGS = -Wall -Werror -Wextra -O3 -fPIE
 
 INCLUDE = -Iinclude
 

@@ -6,7 +6,7 @@
 /*   By: smoore-a <smoore-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 21:44:53 by smoore-a          #+#    #+#             */
-/*   Updated: 2025/01/27 16:56:26 by smoore-a         ###   ########.fr       */
+/*   Updated: 2025/01/29 13:07:37 by smoore-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,11 @@ void	limit_fps(t_data *data)
 		data->time = (tv.tv_sec * 1000) + (tv.tv_usec / 1000);
 	}
 	frame_time = (data->time - data->old_time) / 1000.0;
-	write(1, "\rFPS: ", 6);
+	if (!write(1, "\rFPS: ", 6))
+		clean_exit(data, "write", errno);
 	ft_putnbr_fd((int)(1.0 / frame_time), 1);
-	write(1, " ", 1);
+	if (!write(1, " ", 1))
+		clean_exit(data, "write", errno);
 	data->player.move_speed = frame_time * (double)MOVE_SPEED;
 	data->player.rot_speed = frame_time * (double)ROT_SPEED;
 }
