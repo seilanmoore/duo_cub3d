@@ -6,7 +6,7 @@
 /*   By: smoore-a <smoore-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 11:52:56 by smoore-a          #+#    #+#             */
-/*   Updated: 2025/01/28 14:45:48 by smoore-a         ###   ########.fr       */
+/*   Updated: 2025/01/29 17:36:26 by smoore-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	get_pixel_color(t_img *img, int x, int y)
 	char	*pixel;
 
 	pixel = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
-	return (*(int *)pixel);
+	return (*(unsigned int *)pixel);
 }
 
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color)

@@ -6,7 +6,7 @@
 #    By: smoore-a <smoore-a@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/10 16:39:43 by smoore-a          #+#    #+#              #
-#    Updated: 2025/01/29 13:12:36 by smoore-a         ###   ########.fr        #
+#    Updated: 2025/01/29 17:55:18 by smoore-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ HEADER = cub3d.h
 
 CC = gcc
 
-CFLAGS = -Wall -Werror -Wextra -O3 -ffast-math # -g -O0 -ffast-math -O3
+CFLAGS = -Wall -Werror -Wextra #-g -ffast-math -O0
 
 L_FLAGS = -Llib/libft -lft \
 	-Llib/minilibx-linux -lmlx_Linux \

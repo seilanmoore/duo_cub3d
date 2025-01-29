@@ -6,7 +6,7 @@
 /*   By: smoore-a <smoore-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 22:33:45 by smoore-a          #+#    #+#             */
-/*   Updated: 2025/01/28 17:20:08 by smoore-a         ###   ########.fr       */
+/*   Updated: 2025/01/29 17:41:48 by smoore-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,8 @@ static void	draw_ray(t_data *data, int x)
 	tex_x = get_tex_x(data, x);
 	step = (double)data->tex_img[data->ray[x].wall_dir].height / \
 		data->ray[x].wall_height;
-	tex_pos = (data->ray[x].draw_start - HEIGHT / 2 + \
-		data->ray[x].wall_height / 2) * step;
+	tex_pos = (data->ray[x].draw_start - (double)HEIGHT / 2 + \
+		(double)data->ray[x].wall_height / 2) * step;
 	draw_ceiling(data, x);
 	y = data->ray[x].draw_start;
 	while (y <= data->ray[x].draw_end)
