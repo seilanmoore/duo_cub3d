@@ -6,7 +6,7 @@
 /*   By: smoore-a <smoore-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 18:33:52 by smoore-a          #+#    #+#             */
-/*   Updated: 2025/01/28 10:47:00 by smoore-a         ###   ########.fr       */
+/*   Updated: 2025/01/30 13:58:03 by smoore-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 
 static void	calc_draw_limits(t_data *data, t_ray *ray)
 {
-	ray->wall_height = (int)(data->height / ray->perp_wall_dist * WALL);
+	if (ray->perp_wall_dist)
+		ray->wall_height = (int)(data->height / ray->perp_wall_dist * WALL);
+	else
+		ray->wall_height = 1e30;
 	ray->draw_start = (int)(-ray->wall_height / 2) + (int)(data->height / 2);
 	if (ray->draw_start < 0)
 		ray->draw_start = 0;
