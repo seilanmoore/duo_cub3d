@@ -6,7 +6,7 @@
 /*   By: smoore-a <smoore-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 16:52:47 by smoore-a          #+#    #+#             */
-/*   Updated: 2025/01/28 14:52:48 by smoore-a         ###   ########.fr       */
+/*   Updated: 2025/01/30 14:10:32 by smoore-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # include <math.h>
 # include <sys/time.h>
 # include <stdbool.h>
+# include <limits.h>
 
 # define PROTOTYPE "prototype: ./cub3d MAP_FILENAME_PATH"
 
