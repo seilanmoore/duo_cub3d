@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smoore-a <smoore-a@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smoore-a <smoore-a@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 11:52:56 by smoore-a          #+#    #+#             */
-/*   Updated: 2025/01/29 17:36:26 by smoore-a         ###   ########.fr       */
+/*   Updated: 2025/02/01 10:50:43 by smoore-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,13 @@ int	get_pixel_color(t_img *img, int x, int y)
 	return (*(unsigned int *)pixel);
 }
 
-void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
+int	my_mlx_pixel_put(t_img *img, int x, int y, int color)
 {
 	char	*dst;
 
+	if (x >= WIDTH || y >= HEIGHT || x < 0 || y < 0)
+		return (1);
 	dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
+	return (0);
 }

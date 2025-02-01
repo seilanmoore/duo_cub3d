@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smoore-a <smoore-a@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smoore-a <smoore-a@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 16:52:47 by smoore-a          #+#    #+#             */
-/*   Updated: 2025/01/30 14:10:32 by smoore-a         ###   ########.fr       */
+/*   Updated: 2025/02/01 10:50:19 by smoore-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@
 
 # define WALL 1
 # define FOV 66
-# define ROT_SPEED 2
-# define MOVE_SPEED 2
+# define ROT_SPEED 10
+# define MOVE_SPEED 10
 # define FPS_LIMIT 60
 
 typedef struct timeval	t_timeval;
@@ -190,6 +190,7 @@ void	move_forward(t_data *data);
 void	move_backwards(t_data *data);
 void	move_to_left(t_data *data);
 void	move_to_right(t_data *data);
+void	handle_movement(t_data *data);
 
 // player_rotation //
 void	rotate_player_left(t_data *data);
@@ -211,7 +212,7 @@ int		draw_frame(t_data *data);
 int		get_tex_x(t_data *data, int x);
 int		get_rgb(int r, int g, int b);
 int		get_pixel_color(t_img *img, int x, int y);
-void	my_mlx_pixel_put(t_img *frame, int x, int y, int color);
+int		my_mlx_pixel_put(t_img *frame, int x, int y, int color);
 
 // limit_fps //
 void	limit_fps(t_data *data);

@@ -3,32 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smoore-a <smoore-a@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smoore-a <smoore-a@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 22:33:45 by smoore-a          #+#    #+#             */
-/*   Updated: 2025/01/29 17:41:48 by smoore-a         ###   ########.fr       */
+/*   Updated: 2025/02/01 10:49:33 by smoore-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-static void	handle_movement(t_data *data)
-{
-	if (data->key.w)
-		move_forward(data);
-	if (data->key.s)
-		move_backwards(data);
-	if (data->key.a)
-		move_to_left(data);
-	if (data->key.d)
-		move_to_right(data);
-	if (data->key.left)
-		rotate_player_left(data);
-	if (data->key.right)
-		rotate_player_right(data);
-}
-
-static void	draw_ceiling(t_data *data, int x)
+static int	draw_ceiling(t_data *data, int x)
 {
 	int	ceiling[3];
 	int	y;
@@ -39,26 +23,14 @@ static void	draw_ceiling(t_data *data, int x)
 	y = 0;
 	while (y < data->ray[x].draw_start)
 	{
-		my_mlx_pixel_put(&(data->frame), x, \
-		y++, get_rgb(ceiling[0], ceiling[1], ceiling[2]));
+		if (my_mlx_pixel_put(&(data->frame), x, \
+		y++, get_rgb(ceiling[0], ceiling[1], ceiling[2])) == 1)
+			return (1);
 	}
+	return (0);
 }
 
-static void	draw_floor(t_data *data, int x, int y)
-{
-	int	floor[3];
-
-	floor[0] = data->floor_color[0];
-	floor[1] = data->floor_color[1];
-	floor[2] = data->floor_color[2];
-	while (y < HEIGHT)
-	{
-		my_mlx_pixel_put(&(data->frame), x, \
-		y++, get_rgb(floor[0], floor[1], floor[2]));
-	}
-}
-
-static void	draw_ray(t_data *data, int x)
+static	int	draw_wall(t_data *data, int x)
 {
 	double	step;
 	double	tex_pos;
@@ -71,17 +43,46 @@ static void	draw_ray(t_data *data, int x)
 		data->ray[x].wall_height;
 	tex_pos = (data->ray[x].draw_start - (double)HEIGHT / 2 + \
 		(double)data->ray[x].wall_height / 2) * step;
-	draw_ceiling(data, x);
 	y = data->ray[x].draw_start;
 	while (y <= data->ray[x].draw_end)
 	{
 		tex_y = (int)tex_pos & \
 			(data->tex_img[data->ray[x].wall_dir].height - 1);
 		tex_pos += step;
-		my_mlx_pixel_put(&(data->frame), x, \
-		y++, data->tex[data->ray[x].wall_dir][tex_x][tex_y]);
+		if (my_mlx_pixel_put(&(data->frame), x, \
+		y++, data->tex[data->ray[x].wall_dir][tex_x][tex_y]) == 1)
+			return (1);
 	}
-	draw_floor(data, x, y);
+	return (0);
+}
+
+static int	draw_floor(t_data *data, int x)
+{
+	int	floor[3];
+	int	y;
+
+	floor[0] = data->floor_color[0];
+	floor[1] = data->floor_color[1];
+	floor[2] = data->floor_color[2];
+	y = data->ray[x].draw_end + 1;
+	while (y < HEIGHT)
+	{
+		if (my_mlx_pixel_put(&(data->frame), x, \
+		y++, get_rgb(floor[0], floor[1], floor[2])) == 1)
+			return (1);
+	}
+	return (0);
+}
+
+static int	draw_ray(t_data *data, int x)
+{
+	if (draw_ceiling(data, x) == 1)
+		return (1);
+	if (draw_wall(data, x) == 1)
+		return (1);
+	if (draw_floor(data, x) == 1)
+		return (1);
+	return (0);
 }
 
 int	draw_frame(t_data *data)
@@ -99,7 +100,10 @@ int	draw_frame(t_data *data)
 	raycasting(data);
 	i = -1;
 	while (++i < WIDTH)
-		draw_ray(data, i);
+	{
+		if (draw_ray(data, i) == 1)
+			clean_exit(data, "my_mlx_pixel_put", 1);
+	}
 	mlx_put_image_to_window(\
 		data->mlx, data->mlx_win, data->frame.img_ptr, 0, 0);
 	mlx_destroy_image(data->mlx, data->frame.img_ptr);

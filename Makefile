@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: smoore-a <smoore-a@student.42.fr>          +#+  +:+       +#+         #
+#    By: smoore-a <smoore-a@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/10 16:39:43 by smoore-a          #+#    #+#              #
-#    Updated: 2025/01/29 17:55:18 by smoore-a         ###   ########.fr        #
+#    Updated: 2025/02/01 11:19:50 by smoore-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@ HEADER = cub3d.h
 
 CC = gcc
 
-CFLAGS = -Wall -Werror -Wextra #-g -ffast-math -O0
+CFLAGS = -Wall -Werror -Wextra -g #-fsanitize=address -fno-omit-frame-pointer
+#ASAN_OPTIONS=detect_leaks=1
 
 L_FLAGS = -Llib/libft -lft \
 	-Llib/minilibx-linux -lmlx_Linux \
