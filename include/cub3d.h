@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smoore-a <smoore-a@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: smoore-a <smoore-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 16:52:47 by smoore-a          #+#    #+#             */
-/*   Updated: 2025/02/01 10:50:19 by smoore-a         ###   ########.fr       */
+/*   Updated: 2025/02/01 15:53:31 by smoore-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@
 
 # define WALL 1
 # define FOV 66
-# define ROT_SPEED 10
-# define MOVE_SPEED 10
+# define ROT_SPEED 100
+# define MOVE_SPEED 100
 # define FPS_LIMIT 60
 
 typedef struct timeval	t_timeval;

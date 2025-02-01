@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean_exit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smoore-a <smoore-a@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: smoore-a <smoore-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 18:16:11 by smoore-a          #+#    #+#             */
-/*   Updated: 2025/02/01 11:20:03 by smoore-a         ###   ########.fr       */
+/*   Updated: 2025/02/01 15:12:16 by smoore-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int	close_cub3d(void *data_)
 	t_data	*data;
 
 	data = (t_data *)data_;
+	(void)data;
 	clean_exit(data, NULL, 0);
 	return (0);
 }
