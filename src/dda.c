@@ -15,8 +15,10 @@
 static void	calc_draw_limits(t_data *data, t_ray *ray)
 {
 	ray->wall_height = (int)(data->height / ray->perp_wall_dist * WALL);
+	if (ray->wall_height < 0)
+		ray->wall_height = data->height;
 	ray->draw_start = (int)(-ray->wall_height / 2) + (int)(data->height / 2);
-	if (ray->draw_start < 0)
+	if (ray->draw_start < 0 || ray->draw_start > HEIGHT)
 		ray->draw_start = 0;
 	ray->draw_end = (int)(ray->wall_height / 2) + (int)(data->height / 2);
 	if (ray->draw_end >= data->height)
