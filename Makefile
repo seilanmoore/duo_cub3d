@@ -6,7 +6,7 @@
 #    By: smoore-a <smoore-a@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/10 16:39:43 by smoore-a          #+#    #+#              #
-#    Updated: 2025/02/01 15:54:48 by smoore-a         ###   ########.fr        #
+#    Updated: 2025/02/05 20:26:39 by smoore-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ SRC = main check_args check_map check_map_utils \
 	parse_file parse_lines parse_colors parse_map parse_textures parse_utils \
 	init_data init_utils_player init_utils_map  init_utils_tex \
 	graphics raycasting dda draw draw_utils \
-	player_move player_rotation limit_fps \
+	handle_movement player_move player_rotation limit_fps \
 	ft_free clean_exit error
 
 OBJ_FILES = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC)))

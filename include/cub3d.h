@@ -6,7 +6,7 @@
 /*   By: smoore-a <smoore-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 16:52:47 by smoore-a          #+#    #+#             */
-/*   Updated: 2025/02/02 23:44:02 by smoore-a         ###   ########.fr       */
+/*   Updated: 2025/02/05 20:30:33 by smoore-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,12 +185,15 @@ void	set_plane(t_player *player);
 // init_utils_map //
 void	convert_map(t_data *data);
 
+// handle_movement //
+int		check_collision(t_data *data, double x, double y);
+void	handle_movement(t_data *data);
+
 // player_move //
 void	move_forward(t_data *data);
 void	move_backwards(t_data *data);
 void	move_to_left(t_data *data);
 void	move_to_right(t_data *data);
-void	handle_movement(t_data *data);
 
 // player_rotation //
 void	rotate_player_left(t_data *data);
